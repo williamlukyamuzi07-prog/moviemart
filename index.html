@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOVIEMART — Movie Library</title>
+  <meta name="description" content="MOVIEMART movie library">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#">MOVIEMART</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#movies">Movies</a>
+      <a href="#categories">Categories</a>
+    </nav>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">WELCOME TO MOVIEMART</p>
+        <h1>Your movie library.</h1>
+        <p class="hero-text">Discover movies, browse categories, and open a dedicated page for every title.</p>
+        <a class="primary-btn" href="#movies">Browse Movies</a>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <label for="search">Search your library</label>
+      <input id="search" type="search" placeholder="Search by movie title or genre...">
+    </section>
+
+    <section id="movies" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LIBRARY</p>
+          <h2>Featured Movies</h2>
+        </div>
+        <span id="resultCount" class="result-count"></span>
+      </div>
+
+      <div id="movieGrid" class="movie-grid"></div>
+      <p id="emptyState" class="empty hidden">No movies match your search.</p>
+    </section>
+
+    <section id="categories" class="section categories">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">EXPLORE</p>
+          <h2>Categories</h2>
+        </div>
+      </div>
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>MOVIEMART</strong>
+    <span>© <span id="year"></span> MOVIEMART</span>
+  </footer>
+
+  <div id="movieModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="closeModal" class="close-btn" aria-label="Close">×</button>
+      <div id="modalPoster" class="modal-poster"></div>
+      <div class="modal-info">
+        <p id="modalMeta" class="eyebrow"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <div class="modal-actions">
+          <a id="watchButton" class="primary-btn" href="#" target="_blank" rel="noopener">Watch</a>
+          <button id="closeButton" class="secondary-btn">Close</button>
+        </div>
+        <p class="notice">Add your legal video-hosting URL in <code>script.js</code> when you are ready.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
