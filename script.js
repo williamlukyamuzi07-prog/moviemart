@@ -5,7 +5,7 @@
     genre: "Western / Drama",
     description: "A rugged frontier story set in the American West. This is the first sample title in the MOVIEMART library.",
     watchUrl: "https://www.patreon.com/MOVIEMART/posts/american-s1-e01-171314039?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
-  }
+  https://www.patreon.com/MOVIEMART/posts/american-s1-e2-171301787?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link }
 ];
 
 const movieGrid = document.getElementById("movieGrid");
