@@ -1,11 +1,11 @@
-const movies = [https://www.patreon.com/MOVIEMART/posts/american-s1-e01-171314039?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link
+const movies = [
   {
     title: "American Primeval",
     year: "2025",
     genre: "Western / Drama",
     description: "A rugged frontier story set in the American West. This is the first sample title in the MOVIEMART library.",
-    watchUrl: "#"
-  }
+    watchUrl: "YOUR_VIDEO_HOSTING_URL_HERE"
+  }https://www.patreon.com/MOVIEMART/posts/american-s1-e01-171314039?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link
   // Add more movies below. Example:
   // ,{
   //   title: "Your Movie",
@@ -93,3 +93,4 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 renderMovies(movies);
 renderCategories();
+  
