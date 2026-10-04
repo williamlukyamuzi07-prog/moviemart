@@ -1,19 +1,11 @@
-const movies = [
+ const movies = [
   {
     title: "American Primeval",
     year: "2025",
     genre: "Western / Drama",
     description: "A rugged frontier story set in the American West. This is the first sample title in the MOVIEMART library.",
-    watchUrl: "YOUR_VIDEO_HOSTING_URL_HERE"
-  }https://www.patreon.com/MOVIEMART/posts/american-s1-e01-171314039?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link
-  // Add more movies below. Example:
-  // ,{
-  //   title: "Your Movie",
-  //   year: "2026",
-  //   genre: "Action",
-  //   description: "Your description here.",
-  //   watchUrl: "https://your-video-host.example/video"
-  // }
+    watchUrl: "https://www.patreon.com/MOVIEMART/posts/american-s1-e01-171314039?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+  }
 ];
 
 const movieGrid = document.getElementById("movieGrid");
@@ -30,7 +22,7 @@ const watchButton = document.getElementById("watchButton");
 
 function renderMovies(list) {
   movieGrid.innerHTML = "";
-  resultCount.textContent = `${list.length} title${list.length === 1 ? "" : "s"}`;
+  if(resultCount) resultCount.textContent = `${list.length} title${list.length === 1 ? "" : "s"}`;
 
   list.forEach((movie) => {
     const card = document.createElement("article");
@@ -42,29 +34,32 @@ function renderMovies(list) {
         <p class="card-meta">${movie.year} · ${movie.genre}</p>
       </div>`;
     card.addEventListener("click", () => openMovie(movie));
-    movieGrid.appendChild(card);
+    if(movieGrid) movieGrid.appendChild(card);
   });
 
-  emptyState.classList.toggle("hidden", list.length !== 0);
+  if(emptyState) emptyState.classList.toggle("hidden", list.length !== 0);
 }
 
 function renderCategories() {
   const categories = [...new Set(movies.flatMap(m => m.genre.split("/").map(g => g.trim())))];
-  categoryGrid.innerHTML = categories.map(category =>
-    `<button class="category" type="button">${category}</button>`
-  ).join("");
+  if(categoryGrid) {
+    categoryGrid.innerHTML = categories.map(category =>
+      `<button class="category" type="button">${category}</button>`
+    ).join("");
 
-  categoryGrid.querySelectorAll(".category").forEach(button => {
-    button.addEventListener("click", () => {
-      search.value = button.textContent;
-      filterMovies();
-      document.getElementById("movies").scrollIntoView({behavior: "smooth"});
+    categoryGrid.querySelectorAll(".category").forEach(button => {
+      button.addEventListener("click", () => {
+        if(search) search.value = button.textContent;
+        filterMovies();
+        const moviesSection = document.getElementById("movies");
+        if(moviesSection) moviesSection.scrollIntoView({behavior: "smooth"});
+      });
     });
-  });
+  }
 }
 
 function filterMovies() {
-  const term = search.value.toLowerCase().trim();
+  const term = search ? search.value.toLowerCase().trim() : "";
   const filtered = movies.filter(m =>
     `${m.title} ${m.genre} ${m.year}`.toLowerCase().includes(term)
   );
@@ -72,25 +67,27 @@ function filterMovies() {
 }
 
 function openMovie(movie) {
-  modalTitle.textContent = movie.title;
-  modalMeta.textContent = `${movie.year} · ${movie.genre}`;
-  modalDescription.textContent = movie.description;
-  modalPoster.innerHTML = `<div class="poster-title" style="padding:25px">${movie.title}</div>`;
-  watchButton.href = movie.watchUrl || "#";
-  modal.classList.remove("hidden");
+  if(modalTitle) modalTitle.textContent = movie.title;
+  if(modalMeta) modalMeta.textContent = `${movie.year} · ${movie.genre}`;
+  if(modalDescription) modalDescription.textContent = movie.description;
+  if(modalPoster) modalPoster.innerHTML = `<div class="poster-title" style="padding:25px">${movie.title}</div>`;
+  if(watchButton) watchButton.href = movie.watchUrl || "#";
+  if(modal) modal.classList.remove("hidden");
 }
 
 function closeModal() {
-  modal.classList.add("hidden");
+  if(modal) modal.classList.add("hidden");
 }
 
-search.addEventListener("input", filterMovies);
-document.getElementById("closeModal").addEventListener("click", closeModal);
-document.getElementById("closeButton").addEventListener("click", closeModal);
-modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+if(search) search.addEventListener("input", filterMovies);
+const closeModalBtn = document.getElementById("closeModal");
+if(closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+const closeBtn = document.getElementById("closeButton");
+if(closeBtn) closeBtn.addEventListener("click", closeModal);
+if(modal) modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if(yearEl) yearEl.textContent = new Date().getFullYear();
 
 renderMovies(movies);
 renderCategories();
-  
